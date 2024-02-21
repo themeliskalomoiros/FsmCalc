@@ -2,12 +2,12 @@ namespace Calculator;
 
 public class StateMachine
 {
-    public State GetNextState(State currentState, Alphabet input)
+    public State GetNextState(State state, Alphabet input)
     {
-        var currentStateIndex = Array.IndexOf(_States, currentState);
+        var stateIndex = Array.IndexOf(_States, state);
         var inputIndex = Array.IndexOf(_Input, input);
 
-        return _TransitionTable[currentStateIndex][inputIndex];
+        return _TransitionTable[stateIndex][inputIndex];
     }
 
     private readonly State[] _States =
