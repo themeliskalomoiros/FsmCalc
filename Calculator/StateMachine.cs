@@ -1,8 +1,8 @@
 namespace Calculator;
 
-public class StateMachine
+public static class StateMachine
 {
-    public State GetNextState(State state, Alphabet input)
+    public static State GetNextState(State state, Alphabet input)
     {
         var stateIndex = Array.IndexOf(_States, state);
         var inputIndex = Array.IndexOf(_Input, input);
@@ -10,7 +10,7 @@ public class StateMachine
         return _TransitionTable[stateIndex][inputIndex];
     }
 
-    private readonly State[] _States =
+    private static readonly State[] _States =
     {
         State.A,
         State.B,
@@ -27,7 +27,7 @@ public class StateMachine
         State.M
     };
 
-    private readonly Alphabet[] _Input =
+    private static readonly Alphabet[] _Input =
     {
         Alphabet.Zero,
         Alphabet.One,
@@ -55,7 +55,7 @@ public class StateMachine
         Alphabet.Equation,
     };
 
-    private readonly Dictionary<int, State[]> _TransitionTable = new Dictionary<int, State[]>
+    private static readonly Dictionary<int, State[]> _TransitionTable = new Dictionary<int, State[]>
     {
         {
             0, 

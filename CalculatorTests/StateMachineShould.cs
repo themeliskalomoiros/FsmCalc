@@ -319,13 +319,7 @@ public class StateMachineShould
     [InlineData(State.M, Alphabet.Equation, State.M)]
     public void ReturnCorrectNextState(State currentState, Alphabet input, State expectedNextState)
     {
-        // Arrange
-        var stateMachine = new StateMachine();
-
-        // Act
-        var nextState = stateMachine.GetNextState(currentState, input);
-
-        // Assert
+        var nextState = StateMachine.GetNextState(currentState, input);
         Assert.Equal(expectedNextState, nextState);
     }
 }
