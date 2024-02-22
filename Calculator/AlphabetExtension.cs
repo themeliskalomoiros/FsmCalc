@@ -30,7 +30,7 @@ public static class AlphabetExtension
 			item == Alphabet.Subtraction;
 	}
 
-	public static string ToString(this Alphabet item)
+	public static string GetSymbol(this Alphabet item)
 	{
 		switch(item)
 		{
