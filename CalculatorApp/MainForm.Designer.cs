@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             _screenTextBox = new TextBox();
             ButtonsPanel = new TableLayoutPanel();
             _equalsButton = new Button();
@@ -486,10 +485,11 @@
             Controls.Add(ButtonsPanel);
             Controls.Add(_screenTextBox);
             Font = new Font("Consolas", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(8, 9, 8, 9);
             Name = "MainForm";
             Text = "Calculator";
+            FormClosing += MainForm_FormClosing;
+            Load += MainForm_Load;
             ButtonsPanel.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
