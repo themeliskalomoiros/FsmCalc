@@ -1,5 +1,7 @@
 using Calculator;
 
+using A = Calculator.Alphabet;
+
 namespace CalculatorTests;
 
 public class CalculatorEngineShould
@@ -20,7 +22,7 @@ public class CalculatorEngineShould
 	}
 
 	[Theory]
-	[InlineData(Alphabet.One)]
+	[InlineData(A.One)]
 	public void RaiseWhenOutputChanges(params Alphabet[] seriesOfInputs)
 	{
 		Action processInputs = () => {
@@ -35,9 +37,12 @@ public class CalculatorEngineShould
 	}
 
 	[Theory]
-	[InlineData("1", Alphabet.One)]
-	[InlineData("12", Alphabet.One, Alphabet.Two)]
-	[InlineData("1453", Alphabet.One, Alphabet.Four, Alphabet.Five, Alphabet.Three)]
+	[InlineData("1", A.One)]
+	[InlineData("12", A.One, A.Two)]
+	[InlineData("1453", A.One, A.Four, A.Five, A.Three)]
+	[InlineData("1453000", A.One, A.Four, A.Five, A.Three, A.Zero, A.Zero, A.Zero)]
+	[InlineData("0", A.Subtraction)]
+	[InlineData("-3", A.Three, A.PlusMinus)]
 	public void ReturnValidOutput(
 		string expectedOutput, 
 		params Alphabet[] inputSequence)

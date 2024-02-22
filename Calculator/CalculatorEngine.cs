@@ -28,38 +28,46 @@ namespace Calculator
         public void Process(Alphabet input)
         {
             ValidateInput(input);
-
             _currentState = StateMachine.GetNextState(_currentState, input);
 
-            if (_currentState == State.B && input.IsNumeric())
+            if (_currentState == State.B)
             {
-                if (ShouldIgnoreZeroInput(input))
-                    return;
+            	if (input.IsNumeric())
+            	{
+	                if (InputAndOutputAreZero(input))
+	                    return;
 
-                UpdateOutput(input);
+	               	var firstOperand = double.Parse(Output + input.GetSymbol());
+	            	Output = firstOperand.ToString();
+            	}
+            	else if (input == Alphabet.PlusMinus)
+            	{
+            		var firstOperand = double.Parse(Output);
+            		firstOperand *= -1.0;
+            		Output = firstOperand.ToString();
+            	}
             }
         }
 
-        private void UpdateOutput(Alphabet input)
+        private bool InputAndOutputAreZero(Alphabet input)
         {
-            var firstOperand = double.Parse(Output + input.GetSymbol());
-            Output = firstOperand.ToString();
-        }
-
-        private bool ShouldIgnoreZeroInput(Alphabet input)
-        {
-            return input == Alphabet.Zero && double.TryParse(Output, out var result) && result == 0.0;
+            return 
+            	input == Alphabet.Zero && 
+            	double.TryParse(Output, out var result) && result == 0.0;
         }
 
         private void ValidateInput(Alphabet input)
         {
             if (!Enum.IsDefined(typeof(Alphabet), input))
-                throw new ArgumentException($"{input} is not a valid argument for this calculator.");
+                throw new ArgumentException(
+                	$"{input} is not a valid argument for this calculator.");
         }
 
         private void OnOutputValueChanged(string newOutput)
         {
-            OutputValueChanged?.Invoke(this, new CalculatorEngineEventArgs(newOutput));
+            OutputValueChanged?.Invoke(
+            	this, 
+            	new CalculatorEngineEventArgs(newOutput));
         }
     }
 }
