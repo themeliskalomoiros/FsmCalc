@@ -17,7 +17,7 @@ public class StateMachineShould
     [InlineData(State.A, Alphabet.Nine, State.B)] // end of numeric input
     [InlineData(State.A, Alphabet.Percent, State.B)]
     [InlineData(State.A, Alphabet.OneOfTerm, State.B)]
-    [InlineData(State.A, Alphabet.TermSquared, State.B)]
+    [InlineData(State.A, Alphabet.PowerOfTwo, State.B)]
     [InlineData(State.A, Alphabet.SquareRoot, State.B)]
     [InlineData(State.A, Alphabet.Division, State.B)]
     [InlineData(State.A, Alphabet.Multiplication, State.B)]
@@ -41,7 +41,7 @@ public class StateMachineShould
     [InlineData(State.B, Alphabet.Nine, State.B)] // end of numeric input
     [InlineData(State.B, Alphabet.Percent, State.C)]
     [InlineData(State.B, Alphabet.OneOfTerm, State.C)]
-    [InlineData(State.B, Alphabet.TermSquared, State.C)]
+    [InlineData(State.B, Alphabet.PowerOfTwo, State.C)]
     [InlineData(State.B, Alphabet.SquareRoot, State.C)]
     [InlineData(State.B, Alphabet.Division, State.C)]
     [InlineData(State.B, Alphabet.Multiplication, State.C)]
@@ -65,7 +65,7 @@ public class StateMachineShould
     [InlineData(State.C, Alphabet.Nine, State.E)] // end of numeric input
     [InlineData(State.C, Alphabet.Percent, State.C)]
     [InlineData(State.C, Alphabet.OneOfTerm, State.C)]
-    [InlineData(State.C, Alphabet.TermSquared, State.C)]
+    [InlineData(State.C, Alphabet.PowerOfTwo, State.C)]
     [InlineData(State.C, Alphabet.SquareRoot, State.C)]
     [InlineData(State.C, Alphabet.Division, State.C)]
     [InlineData(State.C, Alphabet.Multiplication, State.C)]
@@ -89,7 +89,7 @@ public class StateMachineShould
     [InlineData(State.D, Alphabet.Nine, State.B)] // end of numeric input
     [InlineData(State.D, Alphabet.Percent, State.F)]
     [InlineData(State.D, Alphabet.OneOfTerm, State.F)]
-    [InlineData(State.D, Alphabet.TermSquared, State.F)]
+    [InlineData(State.D, Alphabet.PowerOfTwo, State.F)]
     [InlineData(State.D, Alphabet.SquareRoot, State.F)]
     [InlineData(State.D, Alphabet.Division, State.F)]
     [InlineData(State.D, Alphabet.Multiplication, State.F)]
@@ -113,7 +113,7 @@ public class StateMachineShould
     [InlineData(State.E, Alphabet.Nine, State.E)] // end of numeric input
     [InlineData(State.E, Alphabet.Percent, State.C)]
     [InlineData(State.E, Alphabet.OneOfTerm, State.C)]
-    [InlineData(State.E, Alphabet.TermSquared, State.C)]
+    [InlineData(State.E, Alphabet.PowerOfTwo, State.C)]
     [InlineData(State.E, Alphabet.SquareRoot, State.C)]
     [InlineData(State.E, Alphabet.Division, State.C)]
     [InlineData(State.E, Alphabet.Multiplication, State.C)]
@@ -137,7 +137,7 @@ public class StateMachineShould
     [InlineData(State.F, Alphabet.Nine, State.I)] // end of numeric input
     [InlineData(State.F, Alphabet.Percent, State.C)]
     [InlineData(State.F, Alphabet.OneOfTerm, State.C)]
-    [InlineData(State.F, Alphabet.TermSquared, State.C)]
+    [InlineData(State.F, Alphabet.PowerOfTwo, State.C)]
     [InlineData(State.F, Alphabet.SquareRoot, State.C)]
     [InlineData(State.F, Alphabet.Division, State.C)]
     [InlineData(State.F, Alphabet.Multiplication, State.C)]
@@ -161,7 +161,7 @@ public class StateMachineShould
     [InlineData(State.G, Alphabet.Nine, State.E)] // end of numeric input
     [InlineData(State.G, Alphabet.Percent, State.C)]
     [InlineData(State.G, Alphabet.OneOfTerm, State.C)]
-    [InlineData(State.G, Alphabet.TermSquared, State.C)]
+    [InlineData(State.G, Alphabet.PowerOfTwo, State.C)]
     [InlineData(State.G, Alphabet.SquareRoot, State.C)]
     [InlineData(State.G, Alphabet.Division, State.C)]
     [InlineData(State.G, Alphabet.Multiplication, State.C)]
@@ -185,7 +185,7 @@ public class StateMachineShould
     [InlineData(State.H, Alphabet.Nine, State.B)] // end of numeric input
     [InlineData(State.H, Alphabet.Percent, State.C)]
     [InlineData(State.H, Alphabet.OneOfTerm, State.C)]
-    [InlineData(State.H, Alphabet.TermSquared, State.C)]
+    [InlineData(State.H, Alphabet.PowerOfTwo, State.C)]
     [InlineData(State.H, Alphabet.SquareRoot, State.C)]
     [InlineData(State.H, Alphabet.Division, State.C)]
     [InlineData(State.H, Alphabet.Multiplication, State.C)]
@@ -209,7 +209,7 @@ public class StateMachineShould
     [InlineData(State.I, Alphabet.Nine, State.I)] // end of numeric input
     [InlineData(State.I, Alphabet.Percent, State.C)]
     [InlineData(State.I, Alphabet.OneOfTerm, State.C)]
-    [InlineData(State.I, Alphabet.TermSquared, State.C)]
+    [InlineData(State.I, Alphabet.PowerOfTwo, State.C)]
     [InlineData(State.I, Alphabet.SquareRoot, State.C)]
     [InlineData(State.I, Alphabet.Division, State.C)]
     [InlineData(State.I, Alphabet.Multiplication, State.C)]
@@ -233,7 +233,7 @@ public class StateMachineShould
     [InlineData(State.J, Alphabet.Nine, State.I)] // end of numeric input
     [InlineData(State.J, Alphabet.Percent, State.F)]
     [InlineData(State.J, Alphabet.OneOfTerm, State.F)]
-    [InlineData(State.J, Alphabet.TermSquared, State.F)]
+    [InlineData(State.J, Alphabet.PowerOfTwo, State.F)]
     [InlineData(State.J, Alphabet.SquareRoot, State.F)]
     [InlineData(State.J, Alphabet.Division, State.F)]
     [InlineData(State.J, Alphabet.Multiplication, State.F)]
@@ -257,7 +257,7 @@ public class StateMachineShould
     [InlineData(State.K, Alphabet.Nine, State.I)] // end of numeric input
     [InlineData(State.K, Alphabet.Percent, State.C)]
     [InlineData(State.K, Alphabet.OneOfTerm, State.C)]
-    [InlineData(State.K, Alphabet.TermSquared, State.C)]
+    [InlineData(State.K, Alphabet.PowerOfTwo, State.C)]
     [InlineData(State.K, Alphabet.SquareRoot, State.C)]
     [InlineData(State.K, Alphabet.Division, State.C)]
     [InlineData(State.K, Alphabet.Multiplication, State.C)]
@@ -281,7 +281,7 @@ public class StateMachineShould
     [InlineData(State.L, Alphabet.Nine, State.I)] // end of numeric input
     [InlineData(State.L, Alphabet.Percent, State.F)]
     [InlineData(State.L, Alphabet.OneOfTerm, State.F)]
-    [InlineData(State.L, Alphabet.TermSquared, State.F)]
+    [InlineData(State.L, Alphabet.PowerOfTwo, State.F)]
     [InlineData(State.L, Alphabet.SquareRoot, State.F)]
     [InlineData(State.L, Alphabet.Division, State.F)]
     [InlineData(State.L, Alphabet.Multiplication, State.F)]
@@ -305,7 +305,7 @@ public class StateMachineShould
     [InlineData(State.M, Alphabet.Nine, State.M)] // end of numeric input
     [InlineData(State.M, Alphabet.Percent, State.M)]
     [InlineData(State.M, Alphabet.OneOfTerm, State.M)]
-    [InlineData(State.M, Alphabet.TermSquared, State.M)]
+    [InlineData(State.M, Alphabet.PowerOfTwo, State.M)]
     [InlineData(State.M, Alphabet.SquareRoot, State.M)]
     [InlineData(State.M, Alphabet.Division, State.M)]
     [InlineData(State.M, Alphabet.Multiplication, State.M)]

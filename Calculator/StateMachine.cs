@@ -41,7 +41,7 @@ public static class StateMachine
         Alphabet.Nine,
         Alphabet.Percent,
         Alphabet.OneOfTerm,
-        Alphabet.TermSquared,
+        Alphabet.PowerOfTwo,
         Alphabet.SquareRoot,
         Alphabet.Division,
         Alphabet.Multiplication,

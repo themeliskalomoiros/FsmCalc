@@ -30,15 +30,15 @@
         {
             _screenTextBox = new TextBox();
             ButtonsPanel = new TableLayoutPanel();
-            _equalsButton = new Button();
+            _equationButton = new Button();
             _dotButton = new Button();
             _zeroButton = new Button();
             _plusMinusButton = new Button();
-            _plusButton = new Button();
+            _additionButton = new Button();
             _threeButton = new Button();
             _twoButton = new Button();
             _oneButton = new Button();
-            _minusButton = new Button();
+            _subtractionButton = new Button();
             _sixButton = new Button();
             _fiveButton = new Button();
             _fourButton = new Button();
@@ -49,10 +49,10 @@
             _divisionButton = new Button();
             _squareRootButton = new Button();
             _powerOfTwoButton = new Button();
-            _oneByXButton = new Button();
+            _oneOfTermButton = new Button();
             _backspaceButton = new Button();
-            _cButton = new Button();
-            _ceButton = new Button();
+            _clearButton = new Button();
+            _clearEntryButton = new Button();
             _percentButton = new Button();
             ButtonsPanel.SuspendLayout();
             SuspendLayout();
@@ -77,15 +77,15 @@
             ButtonsPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             ButtonsPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             ButtonsPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            ButtonsPanel.Controls.Add(_equalsButton, 3, 5);
+            ButtonsPanel.Controls.Add(_equationButton, 3, 5);
             ButtonsPanel.Controls.Add(_dotButton, 2, 5);
             ButtonsPanel.Controls.Add(_zeroButton, 1, 5);
             ButtonsPanel.Controls.Add(_plusMinusButton, 0, 5);
-            ButtonsPanel.Controls.Add(_plusButton, 3, 4);
+            ButtonsPanel.Controls.Add(_additionButton, 3, 4);
             ButtonsPanel.Controls.Add(_threeButton, 2, 4);
             ButtonsPanel.Controls.Add(_twoButton, 1, 4);
             ButtonsPanel.Controls.Add(_oneButton, 0, 4);
-            ButtonsPanel.Controls.Add(_minusButton, 3, 3);
+            ButtonsPanel.Controls.Add(_subtractionButton, 3, 3);
             ButtonsPanel.Controls.Add(_sixButton, 2, 3);
             ButtonsPanel.Controls.Add(_fiveButton, 1, 3);
             ButtonsPanel.Controls.Add(_fourButton, 0, 3);
@@ -96,10 +96,10 @@
             ButtonsPanel.Controls.Add(_divisionButton, 3, 1);
             ButtonsPanel.Controls.Add(_squareRootButton, 2, 1);
             ButtonsPanel.Controls.Add(_powerOfTwoButton, 1, 1);
-            ButtonsPanel.Controls.Add(_oneByXButton, 0, 1);
+            ButtonsPanel.Controls.Add(_oneOfTermButton, 0, 1);
             ButtonsPanel.Controls.Add(_backspaceButton, 3, 0);
-            ButtonsPanel.Controls.Add(_cButton, 2, 0);
-            ButtonsPanel.Controls.Add(_ceButton, 1, 0);
+            ButtonsPanel.Controls.Add(_clearButton, 2, 0);
+            ButtonsPanel.Controls.Add(_clearEntryButton, 1, 0);
             ButtonsPanel.Controls.Add(_percentButton, 0, 0);
             ButtonsPanel.Dock = DockStyle.Fill;
             ButtonsPanel.Location = new Point(0, 64);
@@ -115,20 +115,20 @@
             ButtonsPanel.Size = new Size(396, 492);
             ButtonsPanel.TabIndex = 1;
             // 
-            // _equalsButton
+            // _equationButton
             // 
-            _equalsButton.BackColor = Color.Firebrick;
-            _equalsButton.Dock = DockStyle.Fill;
-            _equalsButton.Font = new Font("Consolas", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            _equalsButton.ForeColor = Color.WhiteSmoke;
-            _equalsButton.Location = new Point(301, 415);
-            _equalsButton.Margin = new Padding(4, 5, 4, 5);
-            _equalsButton.Name = "_equalsButton";
-            _equalsButton.Size = new Size(91, 72);
-            _equalsButton.TabIndex = 23;
-            _equalsButton.Text = "=";
-            _equalsButton.UseVisualStyleBackColor = false;
-            _equalsButton.Click += EqualsButton_Click;
+            _equationButton.BackColor = Color.Firebrick;
+            _equationButton.Dock = DockStyle.Fill;
+            _equationButton.Font = new Font("Consolas", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            _equationButton.ForeColor = Color.WhiteSmoke;
+            _equationButton.Location = new Point(301, 415);
+            _equationButton.Margin = new Padding(4, 5, 4, 5);
+            _equationButton.Name = "_equationButton";
+            _equationButton.Size = new Size(91, 72);
+            _equationButton.TabIndex = 23;
+            _equationButton.Text = "=";
+            _equationButton.UseVisualStyleBackColor = false;
+            _equationButton.Click += EquationButton_Click;
             // 
             // _dotButton
             // 
@@ -175,20 +175,20 @@
             _plusMinusButton.UseVisualStyleBackColor = false;
             _plusMinusButton.Click += PlusMinusButton_Click;
             // 
-            // _plusButton
+            // _additionButton
             // 
-            _plusButton.BackColor = Color.Firebrick;
-            _plusButton.Dock = DockStyle.Fill;
-            _plusButton.Font = new Font("Consolas", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            _plusButton.ForeColor = Color.WhiteSmoke;
-            _plusButton.Location = new Point(301, 333);
-            _plusButton.Margin = new Padding(4, 5, 4, 5);
-            _plusButton.Name = "_plusButton";
-            _plusButton.Size = new Size(91, 72);
-            _plusButton.TabIndex = 19;
-            _plusButton.Text = "+";
-            _plusButton.UseVisualStyleBackColor = false;
-            _plusButton.Click += PlusButton_Click;
+            _additionButton.BackColor = Color.Firebrick;
+            _additionButton.Dock = DockStyle.Fill;
+            _additionButton.Font = new Font("Consolas", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            _additionButton.ForeColor = Color.WhiteSmoke;
+            _additionButton.Location = new Point(301, 333);
+            _additionButton.Margin = new Padding(4, 5, 4, 5);
+            _additionButton.Name = "_additionButton";
+            _additionButton.Size = new Size(91, 72);
+            _additionButton.TabIndex = 19;
+            _additionButton.Text = "+";
+            _additionButton.UseVisualStyleBackColor = false;
+            _additionButton.Click += AdditionButton_Click;
             // 
             // _threeButton
             // 
@@ -235,20 +235,20 @@
             _oneButton.UseVisualStyleBackColor = false;
             _oneButton.Click += OneButton_Click;
             // 
-            // _minusButton
+            // _subtractionButton
             // 
-            _minusButton.BackColor = Color.Firebrick;
-            _minusButton.Dock = DockStyle.Fill;
-            _minusButton.Font = new Font("Consolas", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            _minusButton.ForeColor = Color.WhiteSmoke;
-            _minusButton.Location = new Point(301, 251);
-            _minusButton.Margin = new Padding(4, 5, 4, 5);
-            _minusButton.Name = "_minusButton";
-            _minusButton.Size = new Size(91, 72);
-            _minusButton.TabIndex = 15;
-            _minusButton.Text = "-";
-            _minusButton.UseVisualStyleBackColor = false;
-            _minusButton.Click += MinusButton_Click;
+            _subtractionButton.BackColor = Color.Firebrick;
+            _subtractionButton.Dock = DockStyle.Fill;
+            _subtractionButton.Font = new Font("Consolas", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            _subtractionButton.ForeColor = Color.WhiteSmoke;
+            _subtractionButton.Location = new Point(301, 251);
+            _subtractionButton.Margin = new Padding(4, 5, 4, 5);
+            _subtractionButton.Name = "_subtractionButton";
+            _subtractionButton.Size = new Size(91, 72);
+            _subtractionButton.TabIndex = 15;
+            _subtractionButton.Text = "-";
+            _subtractionButton.UseVisualStyleBackColor = false;
+            _subtractionButton.Click += SubtractionButton_Click;
             // 
             // _sixButton
             // 
@@ -308,7 +308,7 @@
             _multiplicationButton.TabIndex = 11;
             _multiplicationButton.Text = "x";
             _multiplicationButton.UseVisualStyleBackColor = false;
-            _multiplicationButton.Click += MultiplyButton_Click;
+            _multiplicationButton.Click += MultiplicationButton_Click;
             // 
             // _nineButton
             // 
@@ -400,20 +400,20 @@
             _powerOfTwoButton.UseVisualStyleBackColor = false;
             _powerOfTwoButton.Click += PowerOfTwoButton_Click;
             // 
-            // _oneByXButton
+            // _oneOfTermButton
             // 
-            _oneByXButton.BackColor = Color.Firebrick;
-            _oneByXButton.Dock = DockStyle.Fill;
-            _oneByXButton.Font = new Font("Consolas", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            _oneByXButton.ForeColor = Color.WhiteSmoke;
-            _oneByXButton.Location = new Point(4, 87);
-            _oneByXButton.Margin = new Padding(4, 5, 4, 5);
-            _oneByXButton.Name = "_oneByXButton";
-            _oneByXButton.Size = new Size(91, 72);
-            _oneByXButton.TabIndex = 4;
-            _oneByXButton.Text = "1/x";
-            _oneByXButton.UseVisualStyleBackColor = false;
-            _oneByXButton.Click += OneOfXButton_Click;
+            _oneOfTermButton.BackColor = Color.Firebrick;
+            _oneOfTermButton.Dock = DockStyle.Fill;
+            _oneOfTermButton.Font = new Font("Consolas", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            _oneOfTermButton.ForeColor = Color.WhiteSmoke;
+            _oneOfTermButton.Location = new Point(4, 87);
+            _oneOfTermButton.Margin = new Padding(4, 5, 4, 5);
+            _oneOfTermButton.Name = "_oneOfTermButton";
+            _oneOfTermButton.Size = new Size(91, 72);
+            _oneOfTermButton.TabIndex = 4;
+            _oneOfTermButton.Text = "1/x";
+            _oneOfTermButton.UseVisualStyleBackColor = false;
+            _oneOfTermButton.Click += OneOfTermButton_Click;
             // 
             // _backspaceButton
             // 
@@ -430,35 +430,35 @@
             _backspaceButton.UseVisualStyleBackColor = false;
             _backspaceButton.Click += BackspaceButton_Click;
             // 
-            // _cButton
+            // _clearButton
             // 
-            _cButton.BackColor = Color.Firebrick;
-            _cButton.Dock = DockStyle.Fill;
-            _cButton.Font = new Font("Consolas", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            _cButton.ForeColor = Color.WhiteSmoke;
-            _cButton.Location = new Point(202, 5);
-            _cButton.Margin = new Padding(4, 5, 4, 5);
-            _cButton.Name = "_cButton";
-            _cButton.Size = new Size(91, 72);
-            _cButton.TabIndex = 2;
-            _cButton.Text = "C";
-            _cButton.UseVisualStyleBackColor = false;
-            _cButton.Click += CButton_Click;
+            _clearButton.BackColor = Color.Firebrick;
+            _clearButton.Dock = DockStyle.Fill;
+            _clearButton.Font = new Font("Consolas", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            _clearButton.ForeColor = Color.WhiteSmoke;
+            _clearButton.Location = new Point(202, 5);
+            _clearButton.Margin = new Padding(4, 5, 4, 5);
+            _clearButton.Name = "_clearButton";
+            _clearButton.Size = new Size(91, 72);
+            _clearButton.TabIndex = 2;
+            _clearButton.Text = "C";
+            _clearButton.UseVisualStyleBackColor = false;
+            _clearButton.Click += ClearButton_Click;
             // 
-            // _ceButton
+            // _clearEntryButton
             // 
-            _ceButton.BackColor = Color.Firebrick;
-            _ceButton.Dock = DockStyle.Fill;
-            _ceButton.Font = new Font("Consolas", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            _ceButton.ForeColor = Color.WhiteSmoke;
-            _ceButton.Location = new Point(103, 5);
-            _ceButton.Margin = new Padding(4, 5, 4, 5);
-            _ceButton.Name = "_ceButton";
-            _ceButton.Size = new Size(91, 72);
-            _ceButton.TabIndex = 1;
-            _ceButton.Text = "CE";
-            _ceButton.UseVisualStyleBackColor = false;
-            _ceButton.Click += CeButton_Click;
+            _clearEntryButton.BackColor = Color.Firebrick;
+            _clearEntryButton.Dock = DockStyle.Fill;
+            _clearEntryButton.Font = new Font("Consolas", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            _clearEntryButton.ForeColor = Color.WhiteSmoke;
+            _clearEntryButton.Location = new Point(103, 5);
+            _clearEntryButton.Margin = new Padding(4, 5, 4, 5);
+            _clearEntryButton.Name = "_clearEntryButton";
+            _clearEntryButton.Size = new Size(91, 72);
+            _clearEntryButton.TabIndex = 1;
+            _clearEntryButton.Text = "CE";
+            _clearEntryButton.UseVisualStyleBackColor = false;
+            _clearEntryButton.Click += ClearEntryButton_Click;
             // 
             // _percentButton
             // 
@@ -500,15 +500,15 @@
         private TextBox _screenTextBox;
         private TableLayoutPanel ButtonsPanel;
         private Button _percentButton;
-        private Button _equalsButton;
+        private Button _equationButton;
         private Button _dotButton;
         private Button _zeroButton;
         private Button _plusMinusButton;
-        private Button _plusButton;
+        private Button _additionButton;
         private Button _threeButton;
         private Button _twoButton;
         private Button _oneButton;
-        private Button _minusButton;
+        private Button _subtractionButton;
         private Button _sixButton;
         private Button _fiveButton;
         private Button _fourButton;
@@ -519,9 +519,9 @@
         private Button _divisionButton;
         private Button _squareRootButton;
         private Button _powerOfTwoButton;
-        private Button _oneByXButton;
+        private Button _oneOfTermButton;
         private Button _backspaceButton;
-        private Button _cButton;
-        private Button _ceButton;
+        private Button _clearButton;
+        private Button _clearEntryButton;
     }
 }

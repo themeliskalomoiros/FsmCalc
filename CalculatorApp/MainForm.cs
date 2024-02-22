@@ -12,7 +12,7 @@ namespace CalculatorApp
             _calc = new CalculatorEngine();
         }
 
-        private void OnCalclOutputValueChanged(object? sender, CalculatorEngineEventArgs e)
+        private void Calculator_OutputValueChanged(object? sender, CalculatorEngineEventArgs e)
         {
             _screenTextBox.Text = e.Output;
         }
@@ -77,22 +77,22 @@ namespace CalculatorApp
             _calc.Process(Alphabet.Dot);
         }
 
-        private void EqualsButton_Click(object sender, EventArgs e)
+        private void EquationButton_Click(object sender, EventArgs e)
         {
             _calc.Process(Alphabet.Equation);
         }
 
-        private void PlusButton_Click(object sender, EventArgs e)
+        private void AdditionButton_Click(object sender, EventArgs e)
         {
-            _calc.Process(Alphabet.PlusMinus);
+            _calc.Process(Alphabet.Addition);
         }
 
-        private void MinusButton_Click(object sender, EventArgs e)
+        private void SubtractionButton_Click(object sender, EventArgs e)
         {
             _calc.Process(Alphabet.Subtraction);
         }
 
-        private void MultiplyButton_Click(object sender, EventArgs e)
+        private void MultiplicationButton_Click(object sender, EventArgs e)
         {
             _calc.Process(Alphabet.Multiplication);
         }
@@ -109,10 +109,10 @@ namespace CalculatorApp
 
         private void PowerOfTwoButton_Click(object sender, EventArgs e)
         {
-            _calc.Process(Alphabet.TermSquared);
+            _calc.Process(Alphabet.PowerOfTwo);
         }
 
-        private void OneOfXButton_Click(object sender, EventArgs e)
+        private void OneOfTermButton_Click(object sender, EventArgs e)
         {
             _calc.Process(Alphabet.OneOfTerm);
         }
@@ -122,12 +122,12 @@ namespace CalculatorApp
             _calc.Process(Alphabet.Backspace);
         }
 
-        private void CButton_Click(object sender, EventArgs e)
+        private void ClearButton_Click(object sender, EventArgs e)
         {
             _calc.Process(Alphabet.Clear);
         }
 
-        private void CeButton_Click(object sender, EventArgs e)
+        private void ClearEntryButton_Click(object sender, EventArgs e)
         {
             _calc.Process(Alphabet.ClearEntry);
         }
@@ -139,12 +139,12 @@ namespace CalculatorApp
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            _calc.OutputValueChanged += OnCalclOutputValueChanged;
+            _calc.OutputValueChanged += Calculator_OutputValueChanged;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _calc.OutputValueChanged -= OnCalclOutputValueChanged;
+            _calc.OutputValueChanged -= Calculator_OutputValueChanged;
         }
     }
 }

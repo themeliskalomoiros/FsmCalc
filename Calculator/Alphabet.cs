@@ -14,7 +14,7 @@ public enum Alphabet
     Nine,
     Percent,
     OneOfTerm,
-    TermSquared,
+    PowerOfTwo,
     SquareRoot,
     Division,
     Multiplication,

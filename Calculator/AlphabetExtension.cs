@@ -22,7 +22,7 @@ public static class AlphabetExtension
 		return 
 			item == Alphabet.Percent || 
 			item == Alphabet.OneOfTerm ||
-			item == Alphabet.TermSquared ||
+			item == Alphabet.PowerOfTwo ||
 			item == Alphabet.SquareRoot ||
 			item == Alphabet.Division ||
 			item == Alphabet.Multiplication ||
@@ -58,7 +58,7 @@ public static class AlphabetExtension
 				return "%";
 			case Alphabet.OneOfTerm:
 				return "1/x";
-			case Alphabet.TermSquared:
+			case Alphabet.PowerOfTwo:
 				return "x²";
 			case Alphabet.SquareRoot:
 				return "√";
