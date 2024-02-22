@@ -21,7 +21,7 @@ public class CalculatorEngineShould
 
 	[Theory]
 	[InlineData(Alphabet.One)]
-	public void RaisesWhenOutputChangesValue(params Alphabet[] seriesOfInputs)
+	public void RaiseWhenOutputChanges(params Alphabet[] seriesOfInputs)
 	{
 		Action processInputs = () => {
 			foreach (var input in seriesOfInputs) 
@@ -32,5 +32,19 @@ public class CalculatorEngineShould
 			handler => _sut.OutputValueChanged += handler,
 			handler => _sut.OutputValueChanged -= handler,
 			processInputs);
+	}
+
+	[Theory]
+	[InlineData("1", Alphabet.One)]
+	[InlineData("12", Alphabet.One, Alphabet.Two)]
+	[InlineData("1453", Alphabet.One, Alphabet.Four, Alphabet.Five, Alphabet.Three)]
+	public void ReturnValidOutput(
+		string expectedOutput, 
+		params Alphabet[] inputSequence)
+	{
+		foreach (var input in inputSequence)
+			_sut.Process(input);
+
+		Assert.Equal(expectedOutput, _sut.Output);
 	}
 }

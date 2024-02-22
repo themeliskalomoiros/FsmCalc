@@ -1,50 +1,65 @@
-using System.Text;
+using System;
 
-namespace Calculator;
-
-public class CalculatorEngine
+namespace Calculator
 {
-	public event EventHandler<CalculatorEngineEventArgs>? OutputValueChanged;
-	
-	private string Output { get; set; }
-	private State CurrentState { get; set; }
+    public class CalculatorEngine
+    {
+        public event EventHandler<CalculatorEngineEventArgs>? OutputValueChanged;
 
-	public CalculatorEngine()
-	{
-		Output = "0";
-		CurrentState = State.A;
-	}
+        private string _output;
+        private State _currentState;
 
-	public void Process(Alphabet input)
-	{
-		ThrowForInvalidInput(input);
+        public string Output
+        {
+            get => _output;
+            private set
+            {
+                _output = value;
+                OnOutputValueChanged(_output);
+            }
+        }
 
-		CurrentState = StateMachine.GetNextState(CurrentState, input);
+        public CalculatorEngine()
+        {
+            _output = "0";
+            _currentState = State.A;
+        }
 
-		if (CurrentState == State.B && input.IsNumeric())
-		{
-			if (input == Alphabet.Zero && double.TryParse(Output, out var result))
-			{
-				if (result == 0.0)
-					return;
-			}
-			else
-			{
-				Output += input.ToString();
-				if (OutputValueChanged != null)
-				{
-					OutputValueChanged(this, new CalculatorEngineEventArgs(Output));	
-				}
-			}
-		}
-	}
+        public void Process(Alphabet input)
+        {
+            ValidateInput(input);
 
-	private void ThrowForInvalidInput(Alphabet input)
-	{
-		if (!Enum.IsDefined(typeof(Alphabet), input))
-		{
-			throw new ArgumentException(
-				$"{input} is not a valid argument for this calculator.");
-		}
-	}
+            _currentState = StateMachine.GetNextState(_currentState, input);
+
+            if (_currentState == State.B && input.IsNumeric())
+            {
+                if (ShouldIgnoreZeroInput(input))
+                    return;
+
+                UpdateOutput(input);
+            }
+        }
+
+        private void UpdateOutput(Alphabet input)
+        {
+            var firstOperand = double.Parse(Output + input.GetSymbol());
+            Output = firstOperand.ToString();
+        }
+
+        private bool ShouldIgnoreZeroInput(Alphabet input)
+        {
+            return input == Alphabet.Zero && double.TryParse(Output, out var result) && result == 0.0;
+        }
+
+        private void ValidateInput(Alphabet input)
+        {
+            if (!Enum.IsDefined(typeof(Alphabet), input))
+                throw new ArgumentException($"{input} is not a valid argument for this calculator.");
+        }
+
+        private void OnOutputValueChanged(string newOutput)
+        {
+            OutputValueChanged?.Invoke(this, new CalculatorEngineEventArgs(newOutput));
+        }
+    }
 }
