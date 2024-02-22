@@ -43,6 +43,9 @@ public class CalculatorEngineShould
 	[InlineData("1453000", A.One, A.Four, A.Five, A.Three, A.Zero, A.Zero, A.Zero)]
 	[InlineData("0", A.Subtraction)]
 	[InlineData("-3", A.Three, A.PlusMinus)]
+	[InlineData("32", A.Three, A.Two, A.PlusMinus, A.PlusMinus)]
+	[InlineData("0.", A.Dot)]	
+	[InlineData("0", A.Clear, A.ClearEntry, A.Backspace, A.Equation)]	
 	public void ReturnValidOutput(
 		string expectedOutput, 
 		params Alphabet[] inputSequence)

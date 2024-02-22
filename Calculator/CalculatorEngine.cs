@@ -46,6 +46,14 @@ namespace Calculator
             		firstOperand *= -1.0;
             		Output = firstOperand.ToString();
             	}
+            	else if (input == Alphabet.Dot)
+            	{
+            		_output += ".";
+            	}
+            	else 
+            	{
+            		_currentState = State.A;
+            	}
             }
         }
 
