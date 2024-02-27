@@ -73,7 +73,7 @@ public class StateMachineShould
     [InlineData(State.SecondOperand, Alphabet.PowerOfTwo, State.Result)]
     [InlineData(State.SecondOperand, Alphabet.Sign, State.SecondOperand)]
     [InlineData(State.SecondOperand, Alphabet.Dot, State.SecondOperand)]
-    [InlineData(State.SecondOperand, Alphabet.ClearEntry, State.FirstOperand)]
+    [InlineData(State.SecondOperand, Alphabet.ClearEntry, State.SecondOperand)]
     [InlineData(State.SecondOperand, Alphabet.Clear, State.Init)]
     [InlineData(State.SecondOperand, Alphabet.Backspace, State.SecondOperand)]
     [InlineData(State.SecondOperand, Alphabet.Equation, State.Result)]

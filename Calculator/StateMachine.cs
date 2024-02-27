@@ -86,7 +86,7 @@ public static class StateMachine
                 State.SecondOperand, State.SecondOperand, State.SecondOperand, 
                 State.SecondOperand, State.SecondOperand, State.Result, 
                 State.Result, State.Result, State.Result, 
-                State.SecondOperand, State.SecondOperand, State.FirstOperand, 
+                State.SecondOperand, State.SecondOperand, State.SecondOperand, 
                 State.Init, State.SecondOperand, State.Result, 
             } 
         },
