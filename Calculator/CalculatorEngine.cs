@@ -8,7 +8,7 @@ namespace Calculator
 
         private string _output;
         private State _currentState;
-
+        
         public string Output
         {
             get => _output;
@@ -28,14 +28,40 @@ namespace Calculator
         public void Process(Alphabet input)
         {
             ValidateInput(input);
-            _currentState = StateMachine.GetNextState(_currentState, input);
-        }
+            var nextState = StateMachine.GetNextState(_currentState, input);
 
-        private bool InputAndOutputAreZero(Alphabet input)
-        {
-            return 
-            	input == Alphabet.Zero && 
-            	double.TryParse(Output, out var result) && result == 0.0;
+            if (nextState == State.FirstOperand)
+            {
+                if (input.IsNumeric())
+                {
+                    if (Output == "0")
+                    {
+                        Output = input.GetSymbol();
+                    }
+                    else 
+                    {
+                        Output += input.GetSymbol();
+                    }
+                }
+                else if (input == Alphabet.Sign)
+                {
+                    var firstOperand = double.Parse(Output);
+                    Output = (firstOperand * -1).ToString();
+                }
+                else if (input == Alphabet.Dot)
+                {
+                    if (Output.Contains("."))
+                    {
+                        Output = Output.Replace(".", string.Empty);
+                    }
+                    else
+                    {
+                        Output += ".";
+                    }
+                }
+            }
+
+            _currentState = nextState;
         }
 
         private void ValidateInput(Alphabet input)
