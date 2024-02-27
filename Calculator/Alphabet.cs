@@ -21,7 +21,7 @@ public enum Alphabet
     SquareRoot,
     PowerOfTwo,
     Sign,
-    Dot,
+    Decimal,
     ClearEntry,
     Clear,
     Backspace,

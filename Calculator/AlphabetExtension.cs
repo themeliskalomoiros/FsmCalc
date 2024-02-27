@@ -97,7 +97,7 @@ public static class AlphabetExtension
 				return "-";
 			case Alphabet.Sign:
 				return "±";
-			case Alphabet.Dot:
+			case Alphabet.Decimal:
 				return ".";
 			case Alphabet.ClearEntry:
 				return "CE";

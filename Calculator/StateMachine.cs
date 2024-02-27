@@ -39,7 +39,7 @@ public static class StateMachine
         Alphabet.SquareRoot,
         Alphabet.PowerOfTwo,
         Alphabet.Sign,
-        Alphabet.Dot,
+        Alphabet.Decimal,
         Alphabet.ClearEntry,
         Alphabet.Clear,
         Alphabet.Backspace,
