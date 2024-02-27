@@ -72,9 +72,9 @@ namespace CalculatorApp
             _calc.Process(Alphabet.Sign);
         }
 
-        private void DotButton_Click(object sender, EventArgs e)
+        private void DecimalButton_Click(object sender, EventArgs e)
         {
-            _calc.Process(Alphabet.Dot);
+            _calc.Process(Alphabet.Decimal);
         }
 
         private void EquationButton_Click(object sender, EventArgs e)
@@ -139,12 +139,91 @@ namespace CalculatorApp
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            KeyPreview = true;
             _calc.OutputValueChanged += Calculator_OutputValueChanged;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             _calc.OutputValueChanged -= Calculator_OutputValueChanged;
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.NumPad0:
+                    _zeroButton.PerformClick();
+                    break;
+                case Keys.NumPad1:
+                    _oneButton.PerformClick();
+                    break;
+                case Keys.NumPad2:
+                    _twoButton.PerformClick();
+                    break;
+                case Keys.NumPad3:
+                    _threeButton.PerformClick();
+                    break;
+                case Keys.NumPad4:
+                    _fourButton.PerformClick();
+                    break;
+                case Keys.NumPad5:
+                    _fiveButton.PerformClick();
+                    break;
+                case Keys.NumPad6:
+                    _sixButton.PerformClick();
+                    break;
+                case Keys.NumPad7:
+                    _sevenButton.PerformClick();
+                    break;
+                case Keys.NumPad8:
+                    _eightButton.PerformClick();
+                    break;
+                case Keys.NumPad9:
+                    _nineButton.PerformClick();
+                    break;
+                case Keys.Escape:
+                    _clearEntryButton.PerformClick();
+                    break;
+                case Keys.Back:
+                    _backspaceButton.PerformClick();
+                    break;
+                case Keys.Add:
+                    _additionButton.PerformClick();
+                    break;
+                case Keys.Subtract:
+                    _subtractionButton.PerformClick();
+                    break;
+                case Keys.Multiply:
+                    _multiplicationButton.PerformClick();
+                    break;
+                case Keys.Divide:
+                    _divisionButton.PerformClick();
+                    break;
+                case (Keys.Shift | Keys.NumPad5):
+                    _percentButton.PerformClick();
+                    break;
+                case Keys.Decimal:
+                    _decimalButton.PerformClick();
+                    break;
+                case Keys.Enter:
+                    _equationButton.PerformClick();
+                    break;
+                case (Keys.Shift | Keys.P):
+                    _powerOfTwoButton.PerformClick();
+                    break;
+                case (Keys.Shift | Keys.S):
+                    _squareRootButton.PerformClick();
+                    break;
+                case (Keys.Shift | Keys.O):
+                    _oneOfTermButton.PerformClick();
+                    break;
+                case (Keys.Shift | Keys.Subtract):
+                    _plusMinusButton.PerformClick();
+                    break;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

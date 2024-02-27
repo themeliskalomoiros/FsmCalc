@@ -31,7 +31,7 @@
             _screenTextBox = new TextBox();
             ButtonsPanel = new TableLayoutPanel();
             _equationButton = new Button();
-            _dotButton = new Button();
+            _decimalButton = new Button();
             _zeroButton = new Button();
             _plusMinusButton = new Button();
             _additionButton = new Button();
@@ -78,7 +78,7 @@
             ButtonsPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             ButtonsPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             ButtonsPanel.Controls.Add(_equationButton, 3, 5);
-            ButtonsPanel.Controls.Add(_dotButton, 2, 5);
+            ButtonsPanel.Controls.Add(_decimalButton, 2, 5);
             ButtonsPanel.Controls.Add(_zeroButton, 1, 5);
             ButtonsPanel.Controls.Add(_plusMinusButton, 0, 5);
             ButtonsPanel.Controls.Add(_additionButton, 3, 4);
@@ -132,18 +132,18 @@
             // 
             // _dotButton
             // 
-            _dotButton.BackColor = Color.Firebrick;
-            _dotButton.Dock = DockStyle.Fill;
-            _dotButton.Font = new Font("Consolas", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            _dotButton.ForeColor = Color.WhiteSmoke;
-            _dotButton.Location = new Point(202, 415);
-            _dotButton.Margin = new Padding(4, 5, 4, 5);
-            _dotButton.Name = "_dotButton";
-            _dotButton.Size = new Size(91, 72);
-            _dotButton.TabIndex = 22;
-            _dotButton.Text = ".";
-            _dotButton.UseVisualStyleBackColor = false;
-            _dotButton.Click += DotButton_Click;
+            _decimalButton.BackColor = Color.Firebrick;
+            _decimalButton.Dock = DockStyle.Fill;
+            _decimalButton.Font = new Font("Consolas", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            _decimalButton.ForeColor = Color.WhiteSmoke;
+            _decimalButton.Location = new Point(202, 415);
+            _decimalButton.Margin = new Padding(4, 5, 4, 5);
+            _decimalButton.Name = "_dotButton";
+            _decimalButton.Size = new Size(91, 72);
+            _decimalButton.TabIndex = 22;
+            _decimalButton.Text = ".";
+            _decimalButton.UseVisualStyleBackColor = false;
+            _decimalButton.Click += DecimalButton_Click;
             // 
             // _zeroButton
             // 
@@ -501,7 +501,7 @@
         private TableLayoutPanel ButtonsPanel;
         private Button _percentButton;
         private Button _equationButton;
-        private Button _dotButton;
+        private Button _decimalButton;
         private Button _zeroButton;
         private Button _plusMinusButton;
         private Button _additionButton;
