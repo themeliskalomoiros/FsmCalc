@@ -12,19 +12,10 @@ public static class StateMachine
 
     private static readonly State[] _States =
     {
-        State.A,
-        State.B,
-        State.C,
-        State.D,
-        State.E,
-        State.F,
-        State.G,
-        State.H,
-        State.I,
-        State.J,
-        State.K,
-        State.L,
-        State.M
+        State.Init
+        State.FirstOperand
+        State.SecondOperand
+        State.Result
     };
 
     private static readonly Alphabet[] _Input =
@@ -39,15 +30,15 @@ public static class StateMachine
         Alphabet.Seven,
         Alphabet.Eight,
         Alphabet.Nine,
-        Alphabet.Percent,
-        Alphabet.OneOfTerm,
-        Alphabet.PowerOfTwo,
-        Alphabet.SquareRoot,
-        Alphabet.Division,
-        Alphabet.Multiplication,
         Alphabet.Addition,
         Alphabet.Subtraction,
-        Alphabet.PlusMinus,
+        Alphabet.Multiplication,
+        Alphabet.Division,
+        Alphabet.Percent,
+        Alphabet.OneOfTerm,
+        Alphabet.SquareRoot,
+        Alphabet.PowerOfTwo,
+        Alphabet.Sign,
         Alphabet.Dot,
         Alphabet.ClearEntry,
         Alphabet.Clear,
@@ -61,117 +52,40 @@ public static class StateMachine
             0, 
             new State[]
             { 
-                State.B, State.B, State.B, State.B, State.B, State.B, State.B, State.B, State.B, State.B, 
-                State.B, State.B, State.B, State.B, State.B, State.B, State.B, State.B, 
-                State.B, State.B, State.M, State.M, State.M, State.M, 
+                State.Init, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, 
+                State.SecondOperand, State.SecondOperand, State.SecondOperand, State.SecondOperand, 
+                State.Init, State.Init, State.Result, State.Result, 
+                State.Init, State.FirstOperand, State.Init, State.Init, State.Init, State.Init, 
             } 
         },
         {
             1, 
             new State[]
             { 
-                State.B, State.B, State.B, State.B, State.B, State.B, State.B, State.B, State.B, State.B, 
-                State.C, State.C, State.C, State.C, State.C, State.C, State.C, State.C, 
-                State.B, State.B, State.A, State.A, State.D, State.M, 
+                State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, 
+                State.SecondOperand, State.SecondOperand, State.SecondOperand, State.SecondOperand, 
+                State.Init, State.Result, State.Result, State.Result, 
+                State.FirstOperand, State.FirstOperand, State.Init, State.Init, State.FirstOperand, State.FirstOperand, 
             } 
         },
         {
             2, 
             new State[]
             { 
-                State.E, State.E, State.E, State.E, State.E, State.E, State.E, State.E, State.E, State.E, 
-                State.C, State.C, State.C, State.C, State.C, State.C, State.C, State.C, 
-                State.C, State.E, State.A, State.A, State.B, State.M, 
+                State.SecondOperand, State.SecondOperand, State.SecondOperand, State.SecondOperand, State.SecondOperand, State.SecondOperand, State.SecondOperand, State.SecondOperand, State.SecondOperand, State.SecondOperand, 
+                State.SecondOperand, State.SecondOperand, State.SecondOperand, State.SecondOperand, 
+                State.Result, State.Result, State.Result, State.Result, 
+                State.SecondOperand, State.SecondOperand, State.FirstOperand, State.Init, State.SecondOperand, State.Result, 
             } 
         },
         {
             3, 
             new State[]
             { 
-                State.B, State.B, State.B, State.B, State.B, State.B, State.B, State.B, State.B, State.B, 
-                State.F, State.F, State.F, State.F, State.F, State.F, State.F, State.F, 
-                State.B, State.B, State.A, State.A, State.D, State.M, 
-            } 
-        },
-        {
-            4, 
-            new State[]
-            { 
-                State.E, State.E, State.E, State.E, State.E, State.E, State.E, State.E, State.E, State.E, 
-                State.C, State.C, State.C, State.C, State.C, State.C, State.C, State.C, 
-                State.E, State.E, State.E, State.A, State.G, State.H, 
-            } 
-        },
-        {
-            5, 
-            new State[]
-            { 
-                State.I, State.I, State.I, State.I, State.I, State.I, State.I, State.I, State.I, State.I, 
-                State.C, State.C, State.C, State.C, State.C, State.C, State.C, State.C, 
-                State.F, State.I, State.A, State.A, State.D, State.M, 
-            } 
-        },
-        {
-            6, 
-            new State[]
-            { 
-                State.E, State.E, State.E, State.E, State.E, State.E, State.E, State.E, State.E, State.E, 
-                State.C, State.C, State.C, State.C, State.C, State.C, State.C, State.C, 
-                State.G, State.E, State.J, State.A, State.K, State.H, 
-            } 
-        },
-        {
-            7, 
-            new State[]
-            { 
-                State.B, State.B, State.B, State.B, State.B, State.B, State.B, State.B, State.B, State.B, 
-                State.C, State.C, State.C, State.C, State.C, State.C, State.C, State.C, 
-                State.M, State.M, State.A, State.A, State.M, State.H }
-                 }
-                 ,
-        {
-            8, 
-            new State[]
-            { 
-                State.I, State.I, State.I, State.I, State.I, State.I, State.I, State.I, State.I, State.I, 
-                State.C, State.C, State.C, State.C, State.C, State.C, State.C, State.C, 
-                State.I, State.I, State.J, State.A, State.L, State.H, 
-            } 
-        },
-        {
-            9, 
-            new State[]
-            { 
-                State.I, State.I, State.I, State.I, State.I, State.I, State.I, State.I, State.I, State.I, 
-                State.F, State.F, State.F, State.F, State.F, State.F, State.F, State.F, 
-                State.I, State.I, State.E, State.A, State.G, State.H, 
-            } 
-        },
-        {
-            10, 
-            new State[]
-            { 
-                State.I, State.I, State.I, State.I, State.I, State.I, State.I, State.I, State.I, State.I, 
-                State.C, State.C, State.C, State.C, State.C, State.C, State.C, State.C, 
-                State.K, State.I, State.J, State.A, State.L, State.H, 
-            } 
-        },
-        {
-            11, 
-            new State[]
-            { 
-                State.I, State.I, State.I, State.I, State.I, State.I, State.I, State.I, State.I, State.I, 
-                State.F, State.F, State.F, State.F, State.F, State.F, State.F, State.F, 
-                State.K, State.I, State.J, State.B, State.L, State.H, 
-            } 
-        },
-        {
-           12, 
-            new State[]
-            { 
-                State.M, State.M, State.M, State.M, State.M, State.M, State.M, State.M, State.M, State.M, 
-                State.M, State.M, State.M, State.M, State.M, State.M, State.M, State.M, 
-                State.M, State.M, State.M, State.M, State.M, State.M, 
+                State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, 
+                State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, 
+                State.Result, State.Result, State.Result, State.Result, 
+                State.Result, State.Result, State.Init, State.Init, State.Result, State.Result, 
             } 
         },
     };
