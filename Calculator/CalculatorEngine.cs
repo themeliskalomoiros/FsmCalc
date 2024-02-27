@@ -22,39 +22,13 @@ namespace Calculator
         public CalculatorEngine()
         {
             _output = "0";
-            _currentState = State.A;
+            _currentState = State.Init;
         }
 
         public void Process(Alphabet input)
         {
             ValidateInput(input);
             _currentState = StateMachine.GetNextState(_currentState, input);
-
-            if (_currentState == State.B)
-            {
-            	if (input.IsNumeric())
-            	{
-	                if (InputAndOutputAreZero(input))
-	                    return;
-
-	               	var firstOperand = double.Parse(Output + input.GetSymbol());
-	            	Output = firstOperand.ToString();
-            	}
-            	else if (input == Alphabet.PlusMinus)
-            	{
-            		var firstOperand = double.Parse(Output);
-            		firstOperand *= -1.0;
-            		Output = firstOperand.ToString();
-            	}
-            	else if (input == Alphabet.Dot)
-            	{
-            		_output += ".";
-            	}
-            	else 
-            	{
-            		_currentState = State.A;
-            	}
-            }
         }
 
         private bool InputAndOutputAreZero(Alphabet input)

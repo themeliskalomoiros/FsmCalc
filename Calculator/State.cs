@@ -5,5 +5,5 @@ public enum State
     Init,
     FirstOperand,
     SecondOperand,
-    Result
+    Result,
 }

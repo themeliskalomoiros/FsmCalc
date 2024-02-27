@@ -70,7 +70,7 @@ public static class AlphabetExtension
 				return "+";
 			case Alphabet.Subtraction:
 				return "-";
-			case Alphabet.PlusMinus:
+			case Alphabet.Sign:
 				return "±";
 			case Alphabet.Dot:
 				return ".";

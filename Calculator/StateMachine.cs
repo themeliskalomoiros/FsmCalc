@@ -10,15 +10,15 @@ public static class StateMachine
         return _TransitionTable[stateIndex][inputIndex];
     }
 
-    private static readonly State[] _States =
+    static readonly State[] _States =
     {
-        State.Init
-        State.FirstOperand
-        State.SecondOperand
-        State.Result
+        State.Init,
+        State.FirstOperand,
+        State.SecondOperand,
+        State.Result,
     };
 
-    private static readonly Alphabet[] _Input =
+    static readonly Alphabet[] _Input =
     {
         Alphabet.Zero,
         Alphabet.One,
@@ -46,46 +46,62 @@ public static class StateMachine
         Alphabet.Equation,
     };
 
-    private static readonly Dictionary<int, State[]> _TransitionTable = new Dictionary<int, State[]>
+    static readonly Dictionary<int, State[]> _TransitionTable = new Dictionary<int, State[]>
     {
         {
             0, 
             new State[]
             { 
-                State.Init, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, 
-                State.SecondOperand, State.SecondOperand, State.SecondOperand, State.SecondOperand, 
-                State.Init, State.Init, State.Result, State.Result, 
-                State.Init, State.FirstOperand, State.Init, State.Init, State.Init, State.Init, 
+                State.Init, State.FirstOperand, State.FirstOperand, 
+                State.FirstOperand, State.FirstOperand, State.FirstOperand, 
+                State.FirstOperand, State.FirstOperand, State.FirstOperand, 
+                State.FirstOperand, State.SecondOperand, State.SecondOperand, 
+                State.SecondOperand, State.SecondOperand, State.Init, 
+                State.Init, State.Result, State.Result, 
+                State.Init, State.FirstOperand, State.Init, 
+                State.Init, State.Init, State.Init, 
             } 
         },
         {
             1, 
             new State[]
             { 
-                State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, 
-                State.SecondOperand, State.SecondOperand, State.SecondOperand, State.SecondOperand, 
-                State.Init, State.Result, State.Result, State.Result, 
-                State.FirstOperand, State.FirstOperand, State.Init, State.Init, State.FirstOperand, State.FirstOperand, 
+                State.FirstOperand, State.FirstOperand, State.FirstOperand, 
+                State.FirstOperand, State.FirstOperand, State.FirstOperand, 
+                State.FirstOperand, State.FirstOperand, State.FirstOperand, 
+                State.FirstOperand, State.SecondOperand, State.SecondOperand, 
+                State.SecondOperand, State.SecondOperand, State.Init, 
+                State.Result, State.Result, State.Result, 
+                State.FirstOperand, State.FirstOperand, State.Init, 
+                State.Init, State.FirstOperand, State.FirstOperand, 
             } 
         },
         {
             2, 
             new State[]
             { 
-                State.SecondOperand, State.SecondOperand, State.SecondOperand, State.SecondOperand, State.SecondOperand, State.SecondOperand, State.SecondOperand, State.SecondOperand, State.SecondOperand, State.SecondOperand, 
-                State.SecondOperand, State.SecondOperand, State.SecondOperand, State.SecondOperand, 
-                State.Result, State.Result, State.Result, State.Result, 
-                State.SecondOperand, State.SecondOperand, State.FirstOperand, State.Init, State.SecondOperand, State.Result, 
+                State.SecondOperand, State.SecondOperand, State.SecondOperand, 
+                State.SecondOperand, State.SecondOperand, State.SecondOperand, 
+                State.SecondOperand, State.SecondOperand, State.SecondOperand, 
+                State.SecondOperand, State.SecondOperand, State.SecondOperand, 
+                State.SecondOperand, State.SecondOperand, State.Result, 
+                State.Result, State.Result, State.Result, 
+                State.SecondOperand, State.SecondOperand, State.FirstOperand, 
+                State.Init, State.SecondOperand, State.Result, 
             } 
         },
         {
             3, 
             new State[]
             { 
-                State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, 
-                State.FirstOperand, State.FirstOperand, State.FirstOperand, State.FirstOperand, 
-                State.Result, State.Result, State.Result, State.Result, 
-                State.Result, State.Result, State.Init, State.Init, State.Result, State.Result, 
+                State.FirstOperand, State.FirstOperand, State.FirstOperand, 
+                State.FirstOperand, State.FirstOperand, State.FirstOperand, 
+                State.FirstOperand, State.FirstOperand, State.FirstOperand, 
+                State.FirstOperand, State.FirstOperand, State.FirstOperand, 
+                State.FirstOperand, State.FirstOperand, State.Result, 
+                State.Result, State.Result, State.Result, 
+                State.Result, State.Result, State.Init, 
+                State.Init, State.Result, State.Result, 
             } 
         },
     };

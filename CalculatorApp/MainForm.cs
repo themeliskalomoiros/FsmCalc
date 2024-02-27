@@ -69,7 +69,7 @@ namespace CalculatorApp
 
         private void PlusMinusButton_Click(object sender, EventArgs e)
         {
-            _calc.Process(Alphabet.PlusMinus);
+            _calc.Process(Alphabet.Sign);
         }
 
         private void DotButton_Click(object sender, EventArgs e)
