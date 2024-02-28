@@ -56,24 +56,30 @@ namespace Calculator
 
             try
             {
-                    switch (nextState)
+                switch (nextState)
                 {
                     case State.Init:
                         Output = "0";
                         FirstOperand = 0.0;
                         SecondOperand = 0.0;
+                        LastMainOperation = null;
                         break;
                     case State.FirstOperand:
                         ProcessFirstOperand(input);
-                        FirstOperand = double.Parse(Output);
+                        if (double.TryParse(Output, out var result))
+                        {
+                            FirstOperand = result;
+                        }
+                        else
+                        {
+                            FirstOperand = 0;
+                        }
                         break;
                     case State.SecondOperand:
                         ProcessSecondOperand(input);
                         break;
                     case State.Result:
                         ProcessResult(input);
-                        FirstOperand = 0.0;
-                        SecondOperand = 0.0;
                         break;
                 }
             }
@@ -85,66 +91,6 @@ namespace Calculator
             CurrentState = nextState;
         }
 
-        private void ProcessResult(Alphabet input)
-        {
-            if (CurrentState == State.FirstOperand)
-            {
-                if (input == Alphabet.OneOfTerm)
-                {
-                    Output = (1.0 / FirstOperand).ToString();
-                }
-                else if (input == Alphabet.SquareRoot)
-                {
-                    Output = Math.Sqrt(FirstOperand).ToString();
-                }
-                else if (input == Alphabet.PowerOfTwo)
-                {
-                    Output = Math.Pow(FirstOperand, 2).ToString();
-                }
-            }
-            else if (CurrentState == State.SecondOperand)
-            {
-                var result = 0.0;
-
-                if (input == Alphabet.OneOfTerm)
-                {
-
-                }
-                else if (input == Alphabet.SquareRoot)
-                {
-
-                }
-                else if (input == Alphabet.PowerOfTwo)
-                {
-
-                }
-                else if (input == Alphabet.Percent)
-                {
-
-                }
-                else if (input == Alphabet.Equation)
-                {
-                    switch (LastMainOperation)
-                    {
-                        case Alphabet.Addition:
-                            result = FirstOperand + SecondOperand;
-                            break;
-                        case Alphabet.Subtraction:
-                            result = FirstOperand - SecondOperand;
-                            break;
-                        case Alphabet.Multiplication:
-                            result = FirstOperand * SecondOperand;
-                            break;
-                        case Alphabet.Division:
-                            result = FirstOperand / SecondOperand;
-                            break;
-                    }
-                }
-
-                Output = result.ToString();
-            }
-        }
-
         private void ProcessFirstOperand(Alphabet input)
         {
             if (IsOutputZero() && input == Alphabet.Zero)
@@ -152,14 +98,16 @@ namespace Calculator
                 return;
             }
 
-            if (IsOutputZero() && input != Alphabet.Zero)
-            {
-                Output = string.Empty;
-            }
-
             if (input.IsNumeric())
             {
-                Output += input.GetSymbol();
+                if (IsOutputZero())
+                {
+                    Output = input.GetSymbol();
+                }
+                else
+                {
+                    Output += input.GetSymbol();
+                }
             }
             else if (input == Alphabet.Decimal)
             {
@@ -185,7 +133,6 @@ namespace Calculator
             }
             else if (input == Alphabet.Backspace)
             {
-                // FIXME: hitting backspace on '-455.3' results to '-', fix it
                 if (Output.Length > 1)
                 {
                     Output = Output.Substring(0, Output.Length - 1);
@@ -195,24 +142,24 @@ namespace Calculator
                     Output = "0";
                 }
             }
+            else if (input == Alphabet.OneOfTerm)
+            {
+                Output = (1.0 / FirstOperand).ToString();
+            }
+            else if (input == Alphabet.PowerOfTwo)
+            {
+                Output = Math.Pow(FirstOperand, 2.0).ToString();
+            }
+            else if (input == Alphabet.SquareRoot)
+            {
+                Output = Math.Sqrt(FirstOperand).ToString();
+            }
         }
 
         private void ProcessSecondOperand(Alphabet input)
         {
-            if (input == Alphabet.ClearEntry)
-            {
-                Output = "0";
-                return;
-            }
-
             if (IsOutputZero() && input == Alphabet.Zero)
             {
-                return;
-            }
-
-            if (input.IsMainOperation())
-            {
-                LastMainOperation = input;
                 return;
             }
 
@@ -226,6 +173,14 @@ namespace Calculator
                 Output += input.GetSymbol();
                 SecondOperand = double.Parse(Output);
             }
+            else if (input.IsMainOperation())
+            {
+                LastMainOperation = input;
+            }
+            else if (input == Alphabet.ClearEntry)
+            {
+                Output = "0";
+            }
             else if (input == Alphabet.Decimal)
             {
                 if (Output.Contains("."))
@@ -250,7 +205,6 @@ namespace Calculator
             }
             else if (input == Alphabet.Backspace)
             {
-                // FIXME: hitting backspace on '-455.3' results to '-', fix it
                 if (Output.Length > 1)
                 {
                     Output = Output.Substring(0, Output.Length - 1);
@@ -260,28 +214,122 @@ namespace Calculator
                     Output = "0";
                 }
             }
-            else if (input == Alphabet.Equation)
+            else if (input == Alphabet.Percent)
             {
-                var result = 0.0;
+                SecondOperand = FirstOperand * SecondOperand / 100.0;
+                Output = SecondOperand.ToString();
+            }
+            else if (input == Alphabet.OneOfTerm)
+            {
+                SecondOperand = 1.0 / SecondOperand;
+                Output = SecondOperand.ToString();
+            }
+            else if (input == Alphabet.PowerOfTwo)
+            {
+                SecondOperand = Math.Pow(SecondOperand, 2.0);
+                Output = SecondOperand.ToString();
+            }
+            else if (input == Alphabet.SquareRoot)
+            {
+                SecondOperand = Math.Sqrt(SecondOperand);
+                Output = SecondOperand.ToString();
+            }
+        }
 
+        private void ProcessResult(Alphabet input)
+        {
+            if (input == Alphabet.Equation)
+            {
                 switch (LastMainOperation)
                 {
                     case Alphabet.Addition:
-                        result = FirstOperand + SecondOperand;
+                        FirstOperand = FirstOperand + SecondOperand;
                         break;
                     case Alphabet.Subtraction:
-                        result = FirstOperand - SecondOperand;
+                        FirstOperand = FirstOperand - SecondOperand;
                         break;
                     case Alphabet.Multiplication:
-                        result = FirstOperand * SecondOperand;
+                        FirstOperand = FirstOperand * SecondOperand;
                         break;
                     case Alphabet.Division:
-                        result = FirstOperand / SecondOperand;
+                        FirstOperand = FirstOperand / SecondOperand;
                         break;
                 }
-
-                Output = result.ToString();
             }
+            else if (input == Alphabet.OneOfTerm)
+            {
+                switch (LastMainOperation)
+                {
+                    case Alphabet.Addition:
+                        FirstOperand = FirstOperand + (1.0 / SecondOperand);
+                        break;
+                    case Alphabet.Subtraction:
+                        FirstOperand = FirstOperand - (1.0 / SecondOperand);
+                        break;
+                    case Alphabet.Multiplication:
+                        FirstOperand = FirstOperand * (1.0 / SecondOperand);
+                        break;
+                    case Alphabet.Division:
+                        FirstOperand = FirstOperand / (1.0 / SecondOperand);
+                        break;
+                }
+            }
+            else if (input == Alphabet.SquareRoot)
+            {
+                switch (LastMainOperation)
+                {
+                    case Alphabet.Addition:
+                        FirstOperand = FirstOperand + Math.Sqrt(SecondOperand);
+                        break;
+                    case Alphabet.Subtraction:
+                        FirstOperand = FirstOperand - Math.Sqrt(SecondOperand);
+                        break;
+                    case Alphabet.Multiplication:
+                        FirstOperand = FirstOperand * Math.Sqrt(SecondOperand);
+                        break;
+                    case Alphabet.Division:
+                        FirstOperand = FirstOperand / Math.Sqrt(SecondOperand);
+                        break;
+                }
+            }
+            else if (input == Alphabet.PowerOfTwo)
+            {
+                switch (LastMainOperation)
+                {
+                    case Alphabet.Addition:
+                        FirstOperand = FirstOperand + Math.Pow(SecondOperand, 2);
+                        break;
+                    case Alphabet.Subtraction:
+                        FirstOperand = FirstOperand - Math.Pow(SecondOperand, 2);
+                        break;
+                    case Alphabet.Multiplication:
+                        FirstOperand = FirstOperand * Math.Pow(SecondOperand, 2);
+                        break;
+                    case Alphabet.Division:
+                        FirstOperand = FirstOperand / Math.Pow(SecondOperand, 2);
+                        break;
+                }
+            }
+            else if (input == Alphabet.Percent)
+            {
+                switch (LastMainOperation)
+                {
+                    case Alphabet.Addition:
+                        FirstOperand = FirstOperand + (SecondOperand / 100);
+                        break;
+                    case Alphabet.Subtraction:
+                        FirstOperand = FirstOperand - (SecondOperand / 100);
+                        break;
+                    case Alphabet.Multiplication:
+                        FirstOperand = FirstOperand * (SecondOperand / 100);
+                        break;
+                    case Alphabet.Division:
+                        FirstOperand = FirstOperand / (SecondOperand / 100);
+                        break;
+                }
+            }
+
+            Output = FirstOperand.ToString();
         }
 
         private void ValidateInput(Alphabet input)

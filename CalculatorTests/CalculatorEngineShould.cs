@@ -52,11 +52,11 @@ public class CalculatorEngineShould
 	[InlineData("0", A.Percent, A.OneOfTerm, A.Sign, A.Clear, A.ClearEntry, A.Backspace, A.Equation)]
 	[InlineData("4", A.Eight, A.Addition, A.Four)]
 	[InlineData("452", A.One, A.Two, A.Four, A.Subtraction, A.Multiplication, A.Four, A.Five, A.Two)]
-	public void ReturnValidOutput(		
-		string expectedOutput, 
+	public void ReturnValidOutput(
+		string expectedOutput,
 		params Alphabet[] inputSequence)
-    {
-        foreach (var input in inputSequence)
+	{
+		foreach (var input in inputSequence)
 			_sut.Process(input);
 
 		Assert.Equal(expectedOutput, _sut.Output);
