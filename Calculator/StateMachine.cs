@@ -71,7 +71,7 @@ public static class StateMachine
                 State.FirstOperand, State.FirstOperand, State.FirstOperand, 
                 State.FirstOperand, State.SecondOperand, State.SecondOperand, 
                 State.SecondOperand, State.SecondOperand, State.Init, 
-                State.Result, State.Result, State.Result, 
+                State.FirstOperand, State.FirstOperand, State.FirstOperand, 
                 State.FirstOperand, State.FirstOperand, State.Init, 
                 State.Init, State.FirstOperand, State.FirstOperand, 
             } 
@@ -84,8 +84,8 @@ public static class StateMachine
                 State.SecondOperand, State.SecondOperand, State.SecondOperand, 
                 State.SecondOperand, State.SecondOperand, State.SecondOperand, 
                 State.SecondOperand, State.SecondOperand, State.SecondOperand, 
-                State.SecondOperand, State.SecondOperand, State.Result, 
-                State.Result, State.Result, State.Result, 
+                State.SecondOperand, State.SecondOperand, State.SecondOperand, 
+                State.SecondOperand, State.SecondOperand, State.SecondOperand, 
                 State.SecondOperand, State.SecondOperand, State.SecondOperand, 
                 State.Init, State.SecondOperand, State.Result, 
             } 
