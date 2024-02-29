@@ -173,7 +173,7 @@
             _plusMinusButton.TabIndex = 20;
             _plusMinusButton.Text = "±";
             _plusMinusButton.UseVisualStyleBackColor = false;
-            _plusMinusButton.Click += PlusMinusButton_Click;
+            _plusMinusButton.Click += SignButton_Click;
             // 
             // _additionButton
             // 

@@ -67,7 +67,7 @@ namespace CalculatorApp
             _calc.Process(Alphabet.Nine);
         }
 
-        private void PlusMinusButton_Click(object sender, EventArgs e)
+        private void SignButton_Click(object sender, EventArgs e)
         {
             _calc.Process(Alphabet.Sign);
         }
