@@ -12,7 +12,7 @@ namespace Calculator
         }
 
         /// <summary>
-        /// A main operation is +, -, *, or ÷.
+        /// A main operation is +, -, *, or ?.
         /// </summary>
         private Alphabet? LastMainOperation
         {
@@ -32,10 +32,14 @@ namespace Calculator
             set;
         }
 
-        private string _output;
+        private string? _output;
         public string Output
         {
-            get => _output;
+            get
+            {
+                return _output ??= string.Empty;
+            }
+
             private set
             {
                 _output = value;
@@ -43,10 +47,10 @@ namespace Calculator
             }
         }
 
+
         public CalculatorEngine()
         {
-            _output = "0";
-            CurrentState = State.Init;
+            Reset();
         }
 
         public void Process(Alphabet input)
@@ -59,10 +63,7 @@ namespace Calculator
                 switch (nextState)
                 {
                     case State.Init:
-                        Output = "0";
-                        FirstOperand = 0.0;
-                        SecondOperand = 0.0;
-                        LastMainOperation = null;
+                        Reset();
                         break;
                     case State.FirstOperand:
                         ProcessFirstOperand(input);
@@ -93,6 +94,14 @@ namespace Calculator
 
         private void ProcessFirstOperand(Alphabet input)
         {
+            if (CurrentState == State.Result)
+            {
+                if (input.IsNumeric())
+                {
+                    Reset();
+                }
+            }
+
             if (IsOutputZero() && input == Alphabet.Zero)
             {
                 return;
@@ -158,6 +167,14 @@ namespace Calculator
 
         private void ProcessSecondOperand(Alphabet input)
         {
+            if (CurrentState == State.Result)
+            {
+                if (input.IsBasicOperation())
+                {
+                    SecondOperand = 0.0;
+                }
+            }
+
             if (IsOutputZero() && input == Alphabet.Zero)
             {
                 return;
@@ -173,12 +190,13 @@ namespace Calculator
                 Output += input.GetSymbol();
                 SecondOperand = double.Parse(Output);
             }
-            else if (input.IsMainOperation())
+            else if (input.IsBasicOperation())
             {
                 LastMainOperation = input;
             }
             else if (input == Alphabet.ClearEntry)
             {
+                SecondOperand = 0.0;
                 Output = "0";
             }
             else if (input == Alphabet.Decimal)
@@ -350,6 +368,14 @@ namespace Calculator
         {
             double.TryParse(Output, out var result);
             return result == 0;
+        }
+
+        private void Reset()
+        {
+            Output = "0";
+            FirstOperand = 0.0;
+            SecondOperand = 0.0;
+            LastMainOperation = null;
         }
     }
 }
