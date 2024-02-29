@@ -27,7 +27,7 @@ public static class AlphabetExtension
     /// </summary>
     /// <param name="item"></param>
     /// <returns>True only if instance +, -, *, or ÷.</returns>
-    public static bool IsMainOperation(this Alphabet item)
+    public static bool IsBasicOperation(this Alphabet item)
 	{
 		return 
 			item == Alphabet.Division ||
@@ -44,7 +44,7 @@ public static class AlphabetExtension
     public static bool IsOperation(this Alphabet item)
 	{
 		return 
-			IsMainOperation(item) ||
+			IsBasicOperation(item) ||
 			item == Alphabet.Percent || 
 			item == Alphabet.OneOfTerm ||
 			item == Alphabet.PowerOfTwo ||
